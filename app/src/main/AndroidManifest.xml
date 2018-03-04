@@ -8,12 +8,6 @@
             android:label="@string/app_name"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <receiver android:name="com.rb2750.timetable.AlarmReceiver"
-                  android:enabled="false">
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-            </intent-filter>
-        </receiver>
         <activity
                 android:name=".MainActivity"
                 android:label="@string/app_name"

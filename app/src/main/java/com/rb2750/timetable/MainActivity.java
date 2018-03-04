@@ -18,8 +18,7 @@ import android.widget.Toast;
 
 import java.util.*;
 
-public class MainActivity extends AppCompatActivity
-{
+public class MainActivity extends AppCompatActivity {
     private SectionsPagerAdapter mSectionsPagerAdapter;
 
     private ViewPager mViewPager;
@@ -34,8 +33,7 @@ public class MainActivity extends AppCompatActivity
     public static int dayOfWeek;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
@@ -54,11 +52,9 @@ public class MainActivity extends AppCompatActivity
 
         selected = bottomBar.getSelectedItemId();
 
-        bottomBar.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener()
-        {
+        bottomBar.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item)
-            {
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 if (bottomBar.getSelectedItemId() == item.getItemId()) return false;
                 selected = item.getItemId();
                 tabLayout.removeAllTabs();
@@ -76,12 +72,9 @@ public class MainActivity extends AppCompatActivity
         createOtherData();
 
         selectToday();
-
-        NotificationScheduler.setAllReminders(this);
     }
 
-    public void selectToday()
-    {
+    public void selectToday() {
         Calendar c = Calendar.getInstance(Locale.UK);
         c.setTime(new Date());
 
@@ -89,20 +82,20 @@ public class MainActivity extends AppCompatActivity
 
         MainActivity.dayOfWeek = dayOfWeek;
 
-        if (tabLayout.getTabCount() - 1 >= dayOfWeek)
+        if (tabLayout.getTabCount() - 1 >= dayOfWeek && dayOfWeek > 0)
             tabLayout.getTabAt(dayOfWeek).select();
+        else
+            tabLayout.getTabAt(0).select();
     }
 
-    public static void createDay(int person, int day, Period... periods)
-    {
+    public static void createDay(int person, int day, Period... periods) {
         if (!dayPeriods.containsKey(person)) dayPeriods.put(person, new HashMap<Integer, Period[]>());
 
         HashMap<Integer, Period[]> periodMap = dayPeriods.get(person);
         periodMap.put(day, periods);
     }
 
-    public static void createMeData()
-    {
+    public static void createMeData() {
         int day = 1;
         createDay(me, day,
                 new Period("Form", "Mr Jalal", "Computing Lab 4", day, 10),
@@ -175,8 +168,7 @@ public class MainActivity extends AppCompatActivity
         );
     }
 
-    public static void createOtherData()
-    {
+    public static void createOtherData() {
         int day = 1;
         createDay(other, day,
                 new Period("Registration", "", "", day, 20),
@@ -239,17 +231,14 @@ public class MainActivity extends AppCompatActivity
         );
     }
 
-    public static List<DataObject> createDataObjects(int day)
-    {
+    public static List<DataObject> createDataObjects(int day) {
         return createDataObjects(day, selected);
     }
 
-    public static List<DataObject> createDataObjects(int day, int person)
-    {
+    public static List<DataObject> createDataObjects(int day, int person) {
         List<DataObject> result = new ArrayList<>();
         if (!dayPeriods.get(person).containsKey(day)) return result;
-        try
-        {
+        try {
             int startHour = 8;
             int minute = person == me ? 30 : 55;
 
@@ -260,8 +249,7 @@ public class MainActivity extends AppCompatActivity
             int currentMinute = c.get(Calendar.MINUTE);
             int currentMinutes = (currentHour * 60) + currentMinute;
 
-            for (Period period : dayPeriods.get(person).get(day))
-            {
+            for (Period period : dayPeriods.get(person).get(day)) {
                 if (period == null) continue;
                 int start_Hour = startHour + (minute / 60);
                 int start_Minute = minute % 60;
@@ -276,8 +264,7 @@ public class MainActivity extends AppCompatActivity
                 boolean current = false;
                 if (currentMinutes > end_Minutes || dayOfWeek != day - 1)
                     color = Color.parseColor("#E0E0E0");
-                else if (currentMinutes >= start_Minutes && currentMinutes <= end_Minutes)
-                {
+                else if (currentMinutes >= start_Minutes && currentMinutes <= end_Minutes) {
                     color = Color.parseColor("#B3E5FC");
                     current = true;
                 }
@@ -285,24 +272,20 @@ public class MainActivity extends AppCompatActivity
                 DataObject object = new DataObject(period.getSubject(), period.getTeacher(), period.getLength(), period.getDay(), start_Hour, start_Minute, end_Hour, end_Minute, period.getClassLocation(), color, current);
                 result.add(object);
             }
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return result;
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
+    public boolean onCreateOptionsMenu(Menu menu) {
 //        getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item)
-    {
+    public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
 //        if (id == R.id.action_settings)
@@ -313,20 +296,17 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-    public static class PlaceholderFragment extends Fragment
-    {
+    public static class PlaceholderFragment extends Fragment {
         private RecyclerView mRecyclerView;
         private RecyclerView.Adapter mAdapter;
         private RecyclerView.LayoutManager mLayoutManager;
 
         private static final String ARG_SECTION_NUMBER = "section_number";
 
-        public PlaceholderFragment()
-        {
+        public PlaceholderFragment() {
         }
 
-        public static PlaceholderFragment newInstance(int sectionNumber)
-        {
+        public static PlaceholderFragment newInstance(int sectionNumber) {
             PlaceholderFragment fragment = new PlaceholderFragment();
             Bundle args = new Bundle();
             args.putInt(ARG_SECTION_NUMBER, sectionNumber);
@@ -335,8 +315,7 @@ public class MainActivity extends AppCompatActivity
         }
 
         @Override
-        public View onCreateView(final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-        {
+        public View onCreateView(final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.timetable, container, false);
 
             mRecyclerView = (RecyclerView) rootView.findViewById(R.id.my_recycler_view);
@@ -352,11 +331,9 @@ public class MainActivity extends AppCompatActivity
             List<DataObject> objects = createDataObjects(dayNumber);
             for (int i = 0; i < objects.size(); i++)
                 ((MyRecyclerViewAdapter) mAdapter).addItem(objects.get(i));
-            ((MyRecyclerViewAdapter) mAdapter).setOnItemLongClickListener(new MyRecyclerViewAdapter.LongClickListener()
-            {
+            ((MyRecyclerViewAdapter) mAdapter).setOnItemLongClickListener(new MyRecyclerViewAdapter.LongClickListener() {
                 @Override
-                public void onItemLongClick(int position, View v)
-                {
+                public void onItemLongClick(int position, View v) {
                     Toast.makeText(inflater.getContext(), position + "", Toast.LENGTH_SHORT).show();
                 }
             });
@@ -364,30 +341,24 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    public class SectionsPagerAdapter extends FragmentPagerAdapter
-    {
-        public SectionsPagerAdapter(FragmentManager fm)
-        {
+    public class SectionsPagerAdapter extends FragmentPagerAdapter {
+        public SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
         }
 
         @Override
-        public Fragment getItem(int position)
-        {
+        public Fragment getItem(int position) {
             return PlaceholderFragment.newInstance(position + 1);
         }
 
         @Override
-        public int getCount()
-        {
+        public int getCount() {
             return 5;
         }
 
         @Override
-        public CharSequence getPageTitle(int position)
-        {
-            switch (position)
-            {
+        public CharSequence getPageTitle(int position) {
+            switch (position) {
                 case 0:
                     return "Mon";
                 case 1:
