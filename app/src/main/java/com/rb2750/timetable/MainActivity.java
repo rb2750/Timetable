@@ -98,26 +98,26 @@ public class MainActivity extends AppCompatActivity {
     public static void createMeData() {
         int day = 1;
         createDay(me, day,
-                new Period("Form", "Mr Jalal", "Computing Lab 4", day, 10),
-                new Period("IT", "Martyn Eggleton", "Computing Lab 2", day, 50),
-                new Period("IT", "Martyn Eggleton", "Computing Lab 2", day, 50),
-                new Period("VMG", "Sharjeel Jalal", "Computing Lab 4", day, 20),
+                new Period("Form", "Sharjeel", "Computing Lab 4", day, 10),
+                new Period("IT", "Martyn", "Computing Lab 2", day, 50),
+                new Period("IT", "Martyn", "Computing Lab 2", day, 50),
+                new Period("VMG", "Sharjeel", "Computing Lab 4", day, 20),
                 new Period("Break", "", "", day, 20),
-                new Period("IT", "Martyn Eggleton", "Computing Lab 2", day, 50),
+                new Period("IT", "Martyn", "Computing Lab 2", day, 50),
                 new Period("Free", "", "", day, 50),
                 new Period("Free", "", "", day, 45),
                 new Period("Lunch", "", "", day, 45),
-                new Period("Maths", "Philip Collin", "Learning Base 13", day, 50),
-                new Period("Maths", "Philip Collin", "Learning Base 13", day, 50)
+                new Period("Maths", "Philip", "Learning Base 13", day, 50),
+                new Period("Maths", "Philip", "Learning Base 13", day, 50)
         );
         day = 2;
         createDay(me, day,
-                new Period("Form", "Mr Jalal", "Computing Lab 4", day, 10),
-                new Period("Computer Science", "Colin Smith", "Computing Lab 3", day, 50),
-                new Period("Computer Science", "Colin Smith", "Computing Lab 3", day, 50),
-                new Period("VMG", "Sharjeel Jalal", "Computing Lab 4", day, 20),
+                new Period("Form", "Sharjeel", "Computing Lab 4", day, 10),
+                new Period("Computer Science", "Colin", "Computing Lab 3", day, 50),
+                new Period("Computer Science", "Colin", "Computing Lab 3", day, 50),
+                new Period("VMG", "Sharjeel", "Computing Lab 4", day, 20),
                 new Period("Break", "", "", day, 20),
-                new Period("Computer Science", "Colin Smith", "Computing Lab 3", day, 50),
+                new Period("Computer Science", "Colin", "Computing Lab 3", day, 50),
                 new Period("Free", "", "", day, 50),
                 new Period("Free", "", "", day, 45),
                 new Period("Lunch", "", "", day, 45),
@@ -126,12 +126,12 @@ public class MainActivity extends AppCompatActivity {
         );
         day = 3;
         createDay(me, day,
-                new Period("Form", "Mr Jalal", "Computing Lab 4", day, 10),
-                new Period("Physics", "Darren Archer", "City", day, 50),
-                new Period("Physics", "Darren Archer", "City", day, 50),
-                new Period("VMG", "Sharjeel Jalal", "Computing Lab 4", day, 20),
+                new Period("Form", "Sharjeel", "Computing Lab 4", day, 10),
+                new Period("Physics", "Darren", "City", day, 50),
+                new Period("Physics", "Darren", "City", day, 50),
+                new Period("VMG", "Sharjeel", "Computing Lab 4", day, 20),
                 new Period("Break", "", "", day, 20),
-                new Period("Physics", "Rory Clark", "City", day, 50),
+                new Period("Physics", "Rory", "City", day, 50),
                 new Period("Free", "", "", day, 50),
                 new Period("Free", "", "", day, 45),
                 new Period("Lunch", "", "", day, 45),
@@ -140,17 +140,17 @@ public class MainActivity extends AppCompatActivity {
         );
         day = 4;
         createDay(me, day,
-                new Period("Form", "Mr Jalal", "Computing Lab 4", day, 10),
-                new Period("Maths", "Robyn Horne", "Learning Base 12", day, 50),
-                new Period("Maths", "Robyn Horne", "Learning Base 12", day, 50),
-                new Period("VMG", "Sharjeel Jalal", "Computing Lab 4", day, 20),
+                new Period("Form", "Sharjeel", "Computing Lab 4", day, 10),
+                new Period("Maths", "Robyn", "Learning Base 12", day, 50),
+                new Period("Maths", "Robyn", "Learning Base 12", day, 50),
+                new Period("VMG", "Sharjeel", "Computing Lab 4", day, 20),
                 new Period("Break", "", "", day, 20),
-                new Period("Maths", "Robyn Horne", "Learning Base 12", day, 50),
+                new Period("Maths", "Robyn", "Learning Base 12", day, 50),
                 new Period("Free", "", "", day, 50),
                 new Period("Free", "", "", day, 45),
                 new Period("Lunch", "", "", day, 45),
-                new Period("Computer Science", "Colin Smith", "Computing Lab 3", day, 50),
-                new Period("Computer Science", "Colin Smith", "Computing Lab 3", day, 50)
+                new Period("Computer Science", "Colin", "Computing Lab 3", day, 50),
+                new Period("Computer Science", "Colin", "Computing Lab 3", day, 50)
         );
         day = 5;
         createDay(me, day,
@@ -159,76 +159,17 @@ public class MainActivity extends AppCompatActivity {
                 new Period("Free", "", "", day, 50),
                 new Period("Free", "", "", day, 20),
                 new Period("Break", "", "", day, 20),
-                new Period("IT", "Martyn Eggleton", "Computing Lab 2", day, 50),
-                new Period("IT", "Martyn Eggleton", "Computing Lab 2", day, 50),
-                new Period("IT", "Martyn Eggleton", "Computing Lab 2", day, 45),
+                new Period("IT", "Martyn", "Computing Lab 2", day, 50),
+                new Period("IT", "Martyn", "Computing Lab 2", day, 50),
+                new Period("IT", "Martyn", "Computing Lab 2", day, 45),
                 new Period("Lunch", "", "", day, 45),
-                new Period("Physics", "Rory Clark", "City", day, 50),
-                new Period("Physics", "Rory Clark", "City", day, 50)
+                new Period("Physics", "Rory", "City", day, 50),
+                new Period("Physics", "Rory", "City", day, 50)
         );
     }
 
     public static void createOtherData() {
-        int day = 1;
-        createDay(other, day,
-                new Period("Registration", "", "", day, 20),
-                new Period("Sociology", "COX", "53", day, 75),
-                new Period("Break", "", "", day, 20),
-                new Period("Biology", "STAFFORD", "28", day, 80),
-                new Period("History", "GIN", "53", day, 75),
-                new Period("Lunch", "", "", day, 50),
-                new Period("Psychology", "WIL", "1", day, 75),
-                new Period("Free", "", "", day, 90),
-                new Period("Tennis Lesson", "", "", day, 60)
-        );
-        day = 2;
-        createDay(other, day,
-                new Period("Registration", "", "", day, 20),
-                new Period("Biology", "MAK", "1", day, 75),
-                new Period("Break", "", "", day, 20),
-                new Period("Sociology", "COX", "53", day, 80),
-                new Period("History", "CRO", "53", day, 75),
-                new Period("Lunch", "", "", day, 50),
-                new Period("Free", "", "", day, 75),
-                new Period("Free", "", "", day, 30),
-                new Period("Piano Lesson", "", "", day, 30)
-        );
-        day = 3;
-        createDay(other, day,
-                new Period("Registration", "", "", day, 20),
-                new Period("Psychology", "BAKER", "50", day, 75),
-                new Period("Break", "", "", day, 20),
-                new Period("Free", "", "", day, 80),
-                new Period("Biology", "Stafford", "12", day, 75),
-                new Period("Lunch", "", "Netball", day, 50),
-                new Period("Sociology", "SHEP", "31", day, 75),
-                new Period("Free", "", "", day, 30),
-                new Period("St. Peters Care Home", "", "", day, 60)
-        );
-        day = 4;
-        createDay(other, day,
-                new Period("Registration", "", "", day, 20),
-                new Period("Free", "", "", day, 75),
-                new Period("Break", "", "", day, 20),
-                new Period("History", "CRO", "52", day, 80),
-                new Period("Sociology", "COX", "53", day, 75),
-                new Period("Lunch", "", "", day, 50),
-                new Period("Psychology", "WIL", "50", day, 75),
-                new Period("Free", "", "", day, 90),
-                new Period("Revision", "Millie", "", day, 150)
-        );
-        day = 5;
-        createDay(other, day,
-                new Period("Registration", "", "", day, 20),
-                new Period("History", "GIN", "53", day, 75),
-                new Period("Break", "", "", day, 20),
-                new Period("Psychology", "BAKER", "51", day, 80),
-                new Period("Free", "", "", day, 75),
-                new Period("Lunch", "", "", day, 50),
-                new Period("Biology", "MAK", "32", day, 75),
-                new Period("Free", "", "", day, 90),
-                new Period("Orchestra + UTX", "", "", day, 300)
-        );
+
     }
 
     public static List<DataObject> createDataObjects(int day) {
