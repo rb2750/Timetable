@@ -2,19 +2,20 @@ package com.rb2750.timetable;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.*;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.tabs.TabLayout;
 
 import java.util.*;
 
@@ -25,10 +26,8 @@ public class MainActivity extends AppCompatActivity {
     private TabLayout tabLayout;
     private BottomNavigationView bottomBar;
     private static HashMap<Integer, HashMap<Integer, Period[]>> dayPeriods = new HashMap<>();
-    public static int selected = 0;
-
-    public static int me = 1;
-    public static int other = 2;
+    private static  int meId = 1;
+    public static int selectedPerson = meId;
 
     public static int dayOfWeek;
 
@@ -50,26 +49,25 @@ public class MainActivity extends AppCompatActivity {
 
         bottomBar = (BottomNavigationView) findViewById(R.id.navigation);
 
-        selected = bottomBar.getSelectedItemId();
+//        selected = bottomBar.getSelectedItemId();
+//
+//        bottomBar.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+//            @Override
+//            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+//                if (bottomBar.getSelectedItemId() == item.getItemId()) return false;
+//                selected = item.getItemId();
+//                tabLayout.removeAllTabs();
+//                mViewPager.setAdapter(mSectionsPagerAdapter);
+//                tabLayout.setupWithViewPager(mViewPager);
+//                selectToday();
+//                return true;
+//            }
+//        });
 
-        bottomBar.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                if (bottomBar.getSelectedItemId() == item.getItemId()) return false;
-                selected = item.getItemId();
-                tabLayout.removeAllTabs();
-                mViewPager.setAdapter(mSectionsPagerAdapter);
-                tabLayout.setupWithViewPager(mViewPager);
-                selectToday();
-                return true;
-            }
-        });
-
-        me = bottomBar.getMenu().getItem(0).getItemId();
-        other = bottomBar.getMenu().getItem(1).getItemId();
+//        me = bottomBar.getMenu().getItem(0).getItemId();
+//        other = bottomBar.getMenu().getItem(1).getItemId();
 
         createMeData();
-        createOtherData();
 
         selectToday();
     }
@@ -97,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static void createMeData() {
         int day = 1;
-        createDay(me, day,
+        createDay(meId, day,
                 new Period("Form", "Sharjeel", "Computing Lab 4", day, 10),
                 new Period("IT", "Martyn", "Computing Lab 2", day, 50),
                 new Period("IT", "Martyn", "Computing Lab 2", day, 50),
@@ -111,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
                 new Period("Maths", "Philip", "Learning Base 13", day, 50)
         );
         day = 2;
-        createDay(me, day,
+        createDay(meId, day,
                 new Period("Form", "Sharjeel", "Computing Lab 4", day, 10),
                 new Period("Computer Science", "Colin", "Computing Lab 3", day, 50),
                 new Period("Computer Science", "Colin", "Computing Lab 3", day, 50),
@@ -125,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
                 new Period("Free", "", "", day, 50)
         );
         day = 3;
-        createDay(me, day,
+        createDay(meId, day,
                 new Period("Form", "Sharjeel", "Computing Lab 4", day, 10),
                 new Period("Physics", "Darren", "City", day, 50),
                 new Period("Physics", "Darren", "City", day, 50),
@@ -139,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
                 new Period("Free", "", "", day, 50)
         );
         day = 4;
-        createDay(me, day,
+        createDay(meId, day,
                 new Period("Form", "Sharjeel", "Computing Lab 4", day, 10),
                 new Period("Maths", "Robyn", "Learning Base 12", day, 50),
                 new Period("Maths", "Robyn", "Learning Base 12", day, 50),
@@ -153,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
                 new Period("Computer Science", "Colin", "Computing Lab 3", day, 50)
         );
         day = 5;
-        createDay(me, day,
+        createDay(meId, day,
                 new Period("Free", "", "", day, 10),
                 new Period("Free", "", "", day, 50),
                 new Period("Free", "", "", day, 50),
@@ -168,12 +166,8 @@ public class MainActivity extends AppCompatActivity {
         );
     }
 
-    public static void createOtherData() {
-
-    }
-
     public static List<DataObject> createDataObjects(int day) {
-        return createDataObjects(day, selected);
+        return createDataObjects(day, selectedPerson);
     }
 
     public static List<DataObject> createDataObjects(int day, int person) {
@@ -181,7 +175,7 @@ public class MainActivity extends AppCompatActivity {
         if (!dayPeriods.get(person).containsKey(day)) return result;
         try {
             int startHour = 8;
-            int minute = person == me ? 30 : 55;
+            int minute = 30;
 
             Calendar c = Calendar.getInstance(Locale.UK);
             c.setTime(new Date());

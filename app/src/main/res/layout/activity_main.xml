@@ -6,52 +6,51 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 tools:context="com.rb2750.timetable.MainActivity">
-    <android.support.design.widget.CoordinatorLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:id="@+id/main_coordinator"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
             android:layout_above="@+id/navigation">
 
-
-        <android.support.design.widget.AppBarLayout
+        <com.google.android.material.appbar.AppBarLayout
                 android:id="@+id/appbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingTop="@dimen/appbar_padding_top"
                 android:theme="@style/AppTheme.AppBarOverlay">
 
-            <android.support.v7.widget.Toolbar
+            <androidx.appcompat.widget.Toolbar
                     android:id="@+id/toolbar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:minHeight="?attr/actionBarSize"
                     android:background="?attr/colorPrimary">
 
-            </android.support.v7.widget.Toolbar>
+            </androidx.appcompat.widget.Toolbar>
 
-            <android.support.design.widget.TabLayout
+            <com.google.android.material.tabs.TabLayout
                     android:id="@+id/tabs"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
 
-        </android.support.design.widget.AppBarLayout>
+        </com.google.android.material.appbar.AppBarLayout>
 
-        <android.support.v4.view.ViewPager
+        <androidx.viewpager.widget.ViewPager
                 android:id="@+id/container"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_alignParentTop="false"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior">
-        </android.support.v4.view.ViewPager>
-    </android.support.design.widget.CoordinatorLayout>
-    <android.support.design.widget.BottomNavigationView
-            android:id="@+id/navigation"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:layout_gravity="bottom"
-            android:layout_alignParentBottom="true"
-            android:background="@android:color/white"
-            app:elevation="16dp"
-            app:menu="@menu/navigation_items"/>
+        </androidx.viewpager.widget.ViewPager>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+<!--    <com.google.android.material.bottomnavigation.BottomNavigationView-->
+<!--            android:id="@+id/navigation"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="56dp"-->
+<!--            android:layout_gravity="bottom"-->
+<!--            android:layout_alignParentBottom="true"-->
+<!--            android:background="@android:color/white"-->
+<!--            app:elevation="16dp"-->
+<!--            app:menu="@menu/navigation_items"/>-->
 </RelativeLayout>
