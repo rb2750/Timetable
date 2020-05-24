@@ -1,1 +1,1 @@
-include ':app', ':timetable2'
+include ':app'
